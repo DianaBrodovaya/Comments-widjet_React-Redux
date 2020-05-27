@@ -1,0 +1,164 @@
+$main-background: #dce2e8;
+$button-background: #4a76a8;
+$comment-background: #fff;
+$warning-color: #ff734c;
+
+$basic-dark-color: #212121;
+$border-width: 4px;
+$basic-spinner-dimensions: 80px;
+$main-spinner-dimensions: $basic-spinner-dimensions - $border-width * 2;
+$small-spinner-dimensions: $main-spinner-dimensions * 0.7;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 18px Roboto;
+  background-color: $main-background;
+}
+
+h1 {
+  font-size: 40px;
+  text-align: center;
+}
+
+.main-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+
+p {
+  margin: 0 0 10px 0
+}
+
+input, textarea {
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  font: 18px Roboto;
+}
+
+textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.comments-list {
+  padding-left: 0
+}
+
+.comment {
+  list-style: none;
+  margin-bottom: 30px;
+  padding: 10px;
+  background: $comment-background;
+}
+
+.comment-author {
+  font-weight: bold;
+  padding-right: 50px
+}
+
+.comment-date {
+  font-size: 14px
+}
+
+.add-comment {
+  font: 18px Roboto;
+  padding: 10px 15px;
+  background-color: $button-background;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  float: right
+}
+
+.add-comment[disabled] {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.comment-wrapper {
+  position: relative
+}
+
+.delete-comment {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 17px;
+  height: 17px;
+  border: none;
+  background: url("images/cross.svg") center center no-repeat;
+  cursor: pointer
+}
+
+.comment-textarea.empty {
+  border: 1px solid $warning-color
+}
+
+.spinner {
+  position: relative;
+  width: $basic-spinner-dimensions;
+  height: $basic-spinner-dimensions;
+  margin: 20px auto;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 50%;
+  }
+}
+
+.spinner {
+
+  @keyframes rotate-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes anti-rotate-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+  &:before {
+    width: $main-spinner-dimensions;
+    height: $main-spinner-dimensions;
+    border-bottom-color: $basic-dark-color;
+    border-right-color: $basic-dark-color;
+    border-top-color: rgba($basic-dark-color, 0);
+    border-left-color: rgba($basic-dark-color, 0);
+    top: 0px;
+    left: 0px;
+    animation: rotate-animation 1s linear 0s infinite;
+  }
+
+  &:after {
+    width: $small-spinner-dimensions;
+    height: $small-spinner-dimensions;
+    border-bottom-color: $basic-dark-color;
+    border-right-color: $basic-dark-color;
+    border-top-color: rgba($basic-dark-color, 0);
+    border-left-color: rgba($basic-dark-color, 0);
+    top: ($main-spinner-dimensions - $small-spinner-dimensions) / 2;
+    left: ($main-spinner-dimensions - $small-spinner-dimensions) / 2;
+    animation: anti-rotate-animation 0.85s linear 0s infinite;
+  }
+}
