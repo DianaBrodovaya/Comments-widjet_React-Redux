@@ -21,7 +21,7 @@ const addComment = (commentAuthor, commentText) => {
             commentAuthor = defaultCommentAuthor;
         }
         return {
-            commentAuthor,
+            commentAuthor: commentAuthor.replace(/<[^>]+>/g, ''),
             commentText: commentText.replace(/<[^>]+>/g, ''),
             commentDate: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
             id: nextId++

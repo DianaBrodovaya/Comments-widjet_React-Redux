@@ -19,7 +19,6 @@ class CommentAddForm extends Component {
 
         const submit = (e) => {
             e.preventDefault();
-            console.log('Comment length: ' + commentText.length);
             addComment(commentAuthor, commentText);
             this.commentInput.value='';
             this.commentTextarea.value='';
